@@ -23,7 +23,7 @@ class SaleController extends Controller
       $validated = $request->validate([
           'product_id' => 'required | string | max:255',
           'quantity' => 'required | integer',
-          'category'  => 'required',
+          'cat'  => 'required',
           'price' => 'required | numeric',
           'img_path' => 'required|image|mimes:jpeg,png,jpg',
           ]);
