@@ -1,6 +1,6 @@
 <x-meta >
   
-<form method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('products.store')}}" enctype="multipart/form-data">
   @csrf
 <div>
     <div>
@@ -10,7 +10,7 @@
         
         <div>
             <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">Quantity</label>
-            <input type="text" name="quantity" id="visitors" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" required />
+            <input type="number" name="quantity" id="visitors" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" required />
         </div>
         
         
@@ -27,17 +27,28 @@
 
         </div>
         
-        
-<div class="flex items-center mb-4">
-    <input id="default-radio-1" type="radio" value="male" name="category" class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none">
-    <label for="default-radio-1" class="select-none ms-2 text-sm font-medium text-heading">Male</label>
-</div>
-<div class="flex items-center">
-    <input id="default-radio-2" type="radio" value="female" name="category" class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none">
-    <label for="default-radio-2" class="select-none ms-2 text-sm font-medium text-heading">Female</label>
-</div>
+     <ul class="select-none grid grid-cols-2 w-full gap-4 md:grid-cols-3 my-2">
+    <li>
+        <input type="radio" id="react-option" value="react-option" name="category" class="hidden peer" required="" checked>
+        <label for="react-option" class="inline-flex items-center justify-between w-full p-5 text-body bg-neutral-primary-soft border-1 border-default rounded-base cursor-pointer peer-checked:hover:bg-brand-softer peer-checked:border-brand-subtle peer-checked:bg-brand-softer hover:bg-neutral-secondary-medium peer-checked:text-fg-brand-strong">                           
+            <div class="w-full font-medium mb-1">{{__('Male')}}</div>
+        </label>
+    </li>
+    <li>
+        <input type="radio" id="vue-option" value="vue-option" name="category" class="hidden peer">
+        <label for="vue-option" class="inline-flex items-center justify-between w-full p-5 text-body bg-neutral-primary-soft border-1 border-default rounded-base cursor-pointer peer-checked:hover:bg-brand-softer peer-checked:border-brand-subtle peer-checked:bg-brand-softer hover:bg-neutral-secondary-medium peer-checked:text-fg-brand-strong">
+            
+                <div class="w-full font-medium mb-1">{{__('Female')}}</div>
+        </label>
+    </li>
+    
+</ul>   
+
 
 </div>
   <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Add</button>
 </form>
 </x-meta>
+
+
+

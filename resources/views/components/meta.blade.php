@@ -18,15 +18,25 @@
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
   </head>
-  <body>
-    <div class=" flex flex-col">
-      <div class=" w-full h-fit">
-      <x-navbar />
+  <body class=" w-full">
+    
+    <div class="w-full flex flex-col">
+      <div class="w-full border">
+        <x-navbar />
       </div>
-      <div>
+      
+      <div class=" w-full flex">
+        <div class="  w-0 md:w-[30%] h-screen">
+          <x-sidebar />
+        </div>
         
+        <div class=" w-full md:w-[70%] h-full">
+          <main class=" w-full h-screen p-4">   
+            {{ $slot }}
+          </main>
+        </div>
       </div>
     </div>
-    {{ $slot }}
-    </body>
-    </html
+  </div>
+</body>
+</html

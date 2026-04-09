@@ -5,24 +5,26 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
 Route::get('/', function () {
     return view('home');
-});
+})->name('dashboard');
 
-Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 
-Route::get('/products/create', [ProductController::class, 'create'])->name('product.create');
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 
-Route::post('/products', [ProductController::class, 'store'])->name('product.store');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 
-Route::get('/products/{product}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
-Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
 
-Route::put('/products/{product}', [ProductController::class, 'update'])->name('product.update');
+Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
 
-Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
 // Sales Route
 
 Route::get('/sales', [SaleController::class, 'index'])->name('sales.index');
 
 Route::get('/sales/create', [SaleController::class, 'create'])->name('sales.create');
+
+Route::post('/sales', [SaleController::class, 'store'])->name('sales.store');

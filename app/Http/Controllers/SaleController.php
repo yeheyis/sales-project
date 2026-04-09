@@ -18,14 +18,16 @@ class SaleController extends Controller
       return view('sales.create');
     }
     
-    public function store(){
+    public function store(Request $request){
       
       $validated = $request->validate([
           'product_id' => 'required | string | max:255',
           'quantity' => 'required | integer',
-          'cat'  => 'required',
           'price' => 'required | numeric',
-          'img_path' => 'required|image|mimes:jpeg,png,jpg',
+          'payment_type'  => 'required',
           ]);
+          
+          Sale::create($validated);
+          return redirect()->route('sales.index')->with('success', 'Added successfully');
     }
 }

@@ -1,26 +1,40 @@
 <x-meta>
+  <form method="POST" action="{{route('sales.store')}}">
+  @csrf
   <div>
-            <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">{{__('Code name')}}</label>
-            <input type="text" id="visitors" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body"
-             placeholder="" required />
-        </div>
+    <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">{{__('Code name')}}</label>
+    
+    <input type="text" id="visitors" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body"
+             placeholder="" name="product_id" required />
+  </div>
         
-        <div>
-            <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">Small Input</label>
-            <input type="text" id="visitors" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" required />
-        </div>
+  <div>
+    <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">{{__('Quantity')}}</label>
+    <input type="text" id="visitors" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" name="quantity" required />
+  </div>
         
-        <div>
-            <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">Small Input</label>
-            <input type="text" id="visitors" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" required />
-        </div>
+  <div>
+    <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">{{__('Price')}}</label>
+    <input type="text" id="visitors" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" name="price" required />
+  </div>
         
-        <div class="flex items-center mb-4">
-    <input id="default-radio-1" type="radio" value="transfer" name="payment_type" class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none">
-    <label for="default-radio-1" class="select-none ms-2 text-sm font-medium text-heading">Transfer</label>
-</div>
-<div class="flex items-center">
-    <input id="default-radio-2" type="radio" value="cash" name="payment_type" class="w-4 h-4 text-neutral-primary border-default-medium bg-neutral-secondary-medium rounded-full checked:border-brand focus:ring-2 focus:outline-none focus:ring-brand-subtle border border-default appearance-none">
-    <label for="default-radio-2" class="select-none ms-2 text-sm font-medium text-heading">Cash</label>
-</div>
+ <ul class="select-none grid grid-cols-2 w-full gap-4 md:grid-cols-3 my-2">
+    <li>
+      <input type="radio" id="react-option" value="transfer" name="payment_type" class="hidden peer" required="" checked>
+      <label for="react-option" class="inline-flex items-center justify-between w-full p-5 text-body bg-neutral-primary-soft border-1 border-default rounded-base cursor-pointer peer-checked:hover:bg-brand-softer peer-checked:border-brand-subtle peer-checked:bg-brand-softer hover:bg-neutral-secondary-medium peer-checked:text-fg-brand-strong">                           
+        <div class="w-full font-medium mb-1">{{__('Transfer')}}</div>
+    </label>
+    </li>
+    <li>
+      <input type="radio" id="vue-option" value="cash" name="payment_type" class="hidden peer">
+      <label for="vue-option" class="inline-flex items-center justify-between w-full p-5 text-body bg-neutral-primary-soft border-1 border-default rounded-base cursor-pointer peer-checked:hover:bg-brand-softer peer-checked:border-brand-subtle peer-checked:bg-brand-softer hover:bg-neutral-secondary-medium peer-checked:text-fg-brand-strong">
+            
+        <div class="w-full font-medium mb-1">{{__('Cash')}}</div>
+      </label>
+    </li>
+    
+</ul>
+
+<button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong my-2 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Add</button>
+</form>
 </x-meta>

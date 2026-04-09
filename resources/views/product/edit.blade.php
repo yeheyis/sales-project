@@ -1,6 +1,6 @@
 <x-meta>
   
-<form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 

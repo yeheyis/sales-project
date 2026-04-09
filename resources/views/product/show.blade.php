@@ -8,10 +8,10 @@
     </div>
 
     <div class="mt-6 flex gap-4">
-        <a href="{{ route('product.index') }}" class="text-blue-500">← Back to all posts</a>
-        <a href="{{ route('product.edit', $product->id) }}" class="bg-yellow-500 text-white px-4 py-2 rounded">Edit Post</a>
+        <a href="{{ route('products.index') }}" class="text-blue-500">← Back to all posts</a>
+        <a href="{{ route('products.edit', $product->id) }}" class="bg-yellow-500 text-white px-4 py-2 rounded">Edit Post</a>
     </div>
-    <form action="{{ route('product.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this?')">
+    <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this?')">
     @csrf
     @method('DELETE')
     
