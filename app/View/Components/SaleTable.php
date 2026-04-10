@@ -6,23 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class sale-table extends Component
+class SaleTable extends Component
 {
     /**
      * Create a new component instance.
      */
-     
-     public $product_id;
-     public $quantity;
-     public $price;
-     public $payment_type;
-    public function __construct($product_id, $quantity, $price, $payment_type)
+    public function __construct()
     {
-        $this product_id = $product_id;
-        $this quantity = $quantity;
-        $this price = $price;
-        $this payment_type = $payment_type;
-        
+        //
     }
 
     /**

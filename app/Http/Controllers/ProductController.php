@@ -12,9 +12,22 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(){
-    $products = Product::all();
-    
+    public function index( Request $request)
+    {
+        $products = Product::query();
+
+        if ($request->has('category')) {
+            if(request('category') === 'both'){
+                $products->whereIn('category', ['male', 'female']);
+            } else{
+
+                $products->where('category', $request->category);
+            }
+
+        }
+
+        $products = $products->get();
+
         return view('product.index', compact('products'));
     }
 
@@ -23,7 +36,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-      
+
         return view('product.create');
     }
 
@@ -32,7 +45,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-      
+
         $validated = $request->validate([
           'code' => 'required | string | max:255',
           'quantity' => 'required | integer',
@@ -40,14 +53,16 @@ class ProductController extends Controller
           'price' => 'required | numeric',
           'img_path' => 'required|image|mimes:jpeg,png,jpg',
           ]);
-          
-          $imgPath = $request->file('img_path')->store('products', 'public');
-          
-          $validated['img_path'] = $imgPath;
-          
-          //die();
-          Product::create($validated);
-          return redirect()->route('product.index')->with('success', 'Added successfully');
+
+        $imgPath = $request->file('img_path')->store('products', 'public');
+
+        $validated['img_path'] = $imgPath;
+
+        // dd($validated);
+
+        Product::create($validated);
+
+        return redirect()->route('products.index')->with('success', 'Added successfully');
     }
 
     /**
@@ -79,17 +94,17 @@ class ProductController extends Controller
           'quantity' => 'required | integer',
           'category'  => 'required',
           'price' => 'required | numeric',
-          'img_path' => 'required|image|mimes:jpeg,png,jpg',
+          'img_path' => 'required|image|max:5120',
           ]
           );
-          
+
           Storage::disk('public')->delete($product->img_path);
           $path = $request->file('img_path')->store('products', 'public');
           $validated['img_path'] = $path;
           $product->update($validated);
-          
-          return redirect()->route('product.index');
-          
+
+          return redirect()->route('products.index');
+
     }
 
     /**
@@ -99,10 +114,10 @@ class ProductController extends Controller
     {
         if ($product->img_path) {
         Storage::disk('public')->delete($product->img_path);
-        
+
         $product->delete();
-        
-        return redirect()->route('product.index')
+
+        return redirect()->route('products.index')
                      ->with('success', 'Product deleted successfully!');
     }
     }
