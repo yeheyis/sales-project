@@ -46,5 +46,8 @@
 
         <button type="submit"
             class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong my-2 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Add</button>
+        @if (session('error'))
+            <p class="text-red-500 text-sm mt-2">{{ session('error') }}</p>
+        @endif
     </form>
 </x-meta>

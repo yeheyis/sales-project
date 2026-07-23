@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('loans', function (Blueprint $table) {
             $table->id();
-            $table->string("code")->unique();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->foreignId('loanee_id')->constrained('loanees')->onDelete('cascade');
             $table->unsignedInteger("quantity")->default(0);
-            $table->unsignedInteger('stock');
-            $table->enum("category", ["male", "female"])->default("male");
-            $table->decimal('price');
-            $table->string('img_path')->nullable();
-
+            $table->decimal('price', 10, 2);
+            $table->decimal('total_price', 10, 2);
+            $table->timestamp('loan_date')->useCurrent();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('loans');
     }
 };

@@ -51,12 +51,13 @@ class ProductController extends Controller
           'quantity' => 'required | integer',
           'category'  => 'required',
           'price' => 'required | numeric',
-          'img_path' => 'required|image|mimes:jpeg,png,jpg',
+          'img_path' => 'required|image| mimes:jpeg,png,jpg,gif,svg,webp,heic,heif|max:20480',
           ]);
 
         $imgPath = $request->file('img_path')->store('products', 'public');
 
         $validated['img_path'] = $imgPath;
+        $validated['stock'] = $validated['quantity'];
 
         // dd($validated);
 
@@ -94,7 +95,7 @@ class ProductController extends Controller
           'quantity' => 'required | integer',
           'category'  => 'required',
           'price' => 'required | numeric',
-          'img_path' => 'required|image|max:5120',
+          'img_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp,heic,heif|max:20480',
           ]
           );
 
@@ -121,4 +122,20 @@ class ProductController extends Controller
                      ->with('success', 'Product deleted successfully!');
     }
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        if($query){
+            $products = Product::where('code', 'LIKE', "%{$query}%")
+            ->orWhere('category', 'LIKE', "%{$query}%")
+            ->get();
+        }else{
+            $products = Product::all();
+        }
+
+
+        return view('product.index', compact('products'));
+     }
 }

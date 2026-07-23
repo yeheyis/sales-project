@@ -6,29 +6,23 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class SaleTable extends Component
+class PrimaryButton extends Component
 {
     /**
      * Create a new component instance.
      */
 
-    public $loans;
-    public $id;
-
-    public function __construct($loans, $id)
+    public $type;
+    public function __construct($type)
     {
-        $this->loans = $loans;
-        $this->id = $id;
+        $this->type = $type;
     }
-
-
-
 
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): View|Closure|string
     {
-        return view('components.sale-table');
+        return view('components.primary-button');
     }
 }

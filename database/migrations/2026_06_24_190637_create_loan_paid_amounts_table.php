@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('loan_paid_amounts', function (Blueprint $table) {
             $table->id();
-            $table->string("code")->unique();
-            $table->unsignedInteger("quantity")->default(0);
-            $table->unsignedInteger('stock');
-            $table->enum("category", ["male", "female"])->default("male");
-            $table->decimal('price');
-            $table->string('img_path')->nullable();
-
+            $table->foreignId('loanee_id')->constrained('loanees')->onDelete('cascade');
+            $table->decimal('amount_paid', 10, 2);
             $table->timestamps();
         });
     }
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('loan_paid_amounts');
     }
 };

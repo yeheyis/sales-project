@@ -17,7 +17,20 @@
     </script>
 
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=add" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=calendar_month" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_forward_ios" />
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=attach_money" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    {{-- <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=add_2" /> --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
@@ -29,11 +42,11 @@
         </div>
 
         <div class=" w-full flex">
-            <div class="  w-0 md:w-[25%] h-screen">
+            <div class="  w-0 md:w-[15%] h-screen">
                 <x-sidebar />
             </div>
 
-            <div class=" w-full md:w-[75%] h-full">
+            <div class=" w-full md:w-[85%] h-full">
                 <main class=" w-full h-screen p-4">
                     {{ $slot }}
                 </main>
@@ -42,5 +55,47 @@
     </div>
     </div>
 </body>
+
+<script>
+    console.log('Script loaded');
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded and parsed');
+        document.getElementById('datepicker-autohide')
+            .addEventListener('input', function(e) {
+                console.log('Selected date:', e.target.value);
+                let rawDate = new Date(e.target.value);
+                let formatted = rawDate.toISOString().split('T')[0];
+                console.log('Formatted date:', formatted);
+                fetch('/sales/filter?date=' + formatted)
+                    .then(response => response.json())
+                    .then(data => {
+                        let tbody = document.getElementById('sales-table-body');
+                        tbody.innerHTML = '';
+
+                        if (data.length === 0) {
+                            tbody.innerHTML = `
+                        <tr>
+                            <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap bg-neutral-secondary-soft">
+                                No sales found.
+                            </th>
+                        </tr>`;
+                        } else {
+                            data.forEach(sale => {
+                                tbody.innerHTML += `
+                            <tr class="border-b border-default">
+                                <th scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap bg-neutral-secondary-soft">
+                                    <a href="/sales/${sale.id}">${sale.product.code}</a>
+                                </th>
+                                <td class="px-6 py-4">${sale.quantity}</td>
+                                <td class="px-6 py-4 bg-neutral-secondary-soft">${sale.price}</td>
+                                <td class="px-6 py-4">${sale.payment_type}</td>
+                            </tr>`;
+                            });
+                        }
+                    });
+            });
+
+    });
+</script>
 
 </html

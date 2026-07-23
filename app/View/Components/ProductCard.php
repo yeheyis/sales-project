@@ -16,14 +16,18 @@ class ProductCard extends Component
      public $price;
      public $image;
      public $product;
+     public $class;
+     public $stock;
 
-    public function __construct($code, $quantity, $price, $image, $product)
+    public function __construct($code, $quantity, $price, $image, $product, $class, $stock)
     {
         $this->code = $code;
         $this->quantity = $quantity;
         $this->image = $image;
         $this->price = $price;
         $this->product = $product;
+        $this->class = $class;
+        $this->stock = $stock;
     }
 
     /**

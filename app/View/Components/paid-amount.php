@@ -6,29 +6,25 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class SaleTable extends Component
+class PaidAmount extends Component
 {
     /**
      * Create a new component instance.
      */
-
-    public $loans;
+    public $paidAmounts;
     public $id;
 
-    public function __construct($loans, $id)
+    public function __construct($paidAmounts, $id)
     {
-        $this->loans = $loans;
+        $this->paidAmounts = $paidAmounts;
         $this->id = $id;
     }
-
-
-
 
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): View|Closure|string
     {
-        return view('components.sale-table');
+        return view('components.paid-amount');
     }
 }

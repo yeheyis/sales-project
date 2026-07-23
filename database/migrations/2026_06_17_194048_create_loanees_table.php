@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('loanees', function (Blueprint $table) {
             $table->id();
-            $table->string("code")->unique();
-            $table->unsignedInteger("quantity")->default(0);
-            $table->unsignedInteger('stock');
-            $table->enum("category", ["male", "female"])->default("male");
-            $table->decimal('price');
-            $table->string('img_path')->nullable();
-
+            $table->string('borrower_name')->unique();
             $table->timestamps();
         });
+
+
     }
 
     /**
@@ -29,6 +25,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('loanees');
+
     }
 };

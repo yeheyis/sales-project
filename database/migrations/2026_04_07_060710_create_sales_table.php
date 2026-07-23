@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->unsignedInteger("quantity")->default(0);
             $table->decimal('price');
             $table->enum("payment_type", ["transfer", "cash"]);

@@ -10,7 +10,7 @@ class Sale extends Model
 {
     /** @use HasFactory<\Database\Factories\SaleFactory> */
     use HasFactory;
-    
+
     protected $fillable = [
       'product_id',
       'quantity',
@@ -20,4 +20,5 @@ class Sale extends Model
     public function product(){
       return $this->belongsTo(Product::class);
     }
+
 }
