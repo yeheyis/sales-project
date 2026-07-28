@@ -37,4 +37,5 @@
         <input type="file" name="img_path">
         <button type="submit">Update Post</button>
     </form>
+    
 </x-meta>

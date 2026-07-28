@@ -22,7 +22,7 @@
     </div>
 
 
-    @if (@session('success'))
+    @if (@session('success')) 
         <x-successfull-alert />
         <script>
             // Wait 5 seconds (5000ms) then hide the alert
@@ -35,7 +35,8 @@
                 }
             }, 5000);
         </script>
-        @endsession
+       
+      @endsession
 
         <form action="{{ route('products.index') }}" method="GET">
 

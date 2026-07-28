@@ -12,8 +12,8 @@
                                 for="file_input">
                                 {{ __('Upload image') }}</label>
                             <div
-                                class="mb-4 w-64 h-64 overflow-auto border border-default rounded-base bg-neutral-secondary-soft flex items-center justify-center">
-                                <img id="imagePreview" class="hidden object-cover rounded border" />
+                                class="mb-4 w-[250px] overflow-auto border border-default rounded bg-neutral-secondary-soft flex items-center justify-center">
+                                <img id="imagePreview" class="hidden w-full rounded border" />
                             </div>
 
                             <input

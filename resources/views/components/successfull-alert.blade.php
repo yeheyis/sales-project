@@ -22,14 +22,15 @@
     </button>
 </div> --}}
 
-<div id="alert-border-3" duration="1000" class="p-4 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft"
+<div id="alert-border-3" duration="1000" class="p-4 mt-2 mb-4 text-sm text-fg-success-strong rounded-base bg-success-soft relative"
     role="alert">
     <span class="font-medium">
         {{ session('success') }}
+        
     </span>
 
     <button type="button"
-        class="ms-auto -mx-1.5 -my-1.5 rounded focus:ring-2 focus:ring-success-medium p-1.5 hover:bg-success-medium inline-flex items-center justify-center h-8 w-8 shrink-0"
+        class="fixed right-5 ms-auto -mx-1.5 -my-1.5 rounded focus:ring-2 focus:ring-success-medium p-1.5 hover:bg-success-medium inline-flex items-center justify-center h-8 w-8 shrink-0"
         data-dismiss-target="#alert-border-3" aria-label="Close">
         <span class="sr-only">Close</span>
         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"

@@ -41,8 +41,8 @@
 
                 <table class="w-full text-sm text-left rtl:text-right text-body">
                     <thead class="text-sm text-body border-b border-default">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 bg-neutral-secondary-soft font-medium">
+                        <tr class="w-full">
+                            <th scope="col" class="px-6 py-3 bg-neutral-secondary-soft font-medium flex-inline">
                                 {{ __('Code name') }}
                             </th>
                             <th scope="col" class="px-6 py-3 font-medium">
@@ -52,7 +52,7 @@
                                 {{ __('Price') }}
                             </th>
                             <th scope="col" class="px-6 py-3 font-medium">
-                                {{ __('Transfer') }}
+                                {{ __('Payment type') }}
                             </th>
 
                         </tr>
@@ -72,7 +72,7 @@
                                     {{ $sale->quantity }}
                                 </td>
                                 <td class="px-6 py-4 bg-neutral-secondary-soft">
-                                    {{ $sale->price }}
+                                    {{ number_format($sale->price) }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $sale->payment_type }}

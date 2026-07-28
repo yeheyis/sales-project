@@ -2,16 +2,16 @@
     <table class="w-full text-sm text-left rtl:text-right text-body">
         <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
             <tr>
-                <th scope="col" class="px-16 py-3">
-                    <span class="sr-only">{{ __('Image') }}</span>
+                <th scope="col" class="px-2 py-3 font-medium">
+                    {{ __('Image') }}
                 </th>
-                <th scope="col" class="px-6 py-3 font-medium">
+                <th scope="col" class="px-2 py-3 font-medium">
                     {{ __('Product') }}
                 </th>
-                <th scope="col" class="px-6 py-3 font-medium">
+                <th scope="col" class="px-2 py-3 font-medium">
                     {{ __('Quantity') }}
                 </th>
-                <th scope="col" class="px-6 py-3 font-medium">
+                <th scope="col" class="px-2 py-3 font-medium">
                     {{ __('Price') }}
                 </th>
             </tr>
@@ -21,20 +21,20 @@
             @forelse ($loans as $loan)
                 @if ($loan->loanee_id == $id)
                     <tr class="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
-                        <td class="p-4">
+                        <td class="p-2">
                             <img src="{{ asset('storage/' . $loan->product->img_path) }}"
                                 alt="{{ $loan->product->code }} image"
-                                class="w-8 aspect-square md:w-24 max-w-full max-h-full">
+                                class="w-16 md:w-24 max-w-full max-h-full">
                         </td>
 
-                        <td class="px-6 py-4 font-semibold text-heading">
+                        <td class="p-2 font-semibold text-heading">
                             {{ $loan->product->code }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="p-2 font-semibold text-heading">
                             {{ $loan->quantity }}
                         </td>
-                        <td class="px-6 py-4 font-semibold text-heading">
-                            {{ $loan->price }}
+                        <td class="p-2 font-semibold text-heading">
+                            {{ number_format($loan->price) }}
                         </td>
                     </tr>
                 @endif

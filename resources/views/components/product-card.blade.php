@@ -1,6 +1,6 @@
-<div class="bg-neutral-primary-soft block max-w-sm  border border-default rounded-base shadow-xs {{ $class ?? '' }}">
+<div class=" block max-w-sm  border border-default  {{ $class ?? '' }}">
     <div class=" p-2">
-        <img class="rounded-base w-full h-60 md:h-100" src="{{ asset('storage/' . $image) }}"
+        <img class="rounded-xs w-full h-60 md:h-100" src="{{ asset('storage/' . $image) }}"
             alt="{{ $code }} image" />
     </div>
     <div>

@@ -1,12 +1,9 @@
 <x-meta>
-    <div class="">
-        <h1 class="text-2xl font-bold text-heading mb-4 capitalize">{{ $loanee->borrower_name }}</h1>
-
-        <div class="fixed bottom-4 right-4 flex gap-2">
+  <div class="fixed bottom-4 right-4 flex gap-2">
             <div data-modal-target="add_modal" data-modal-toggle="add_modal"
                 class=" inline-flex h-auto items-center justify-center rounded-full bg-neutral-950 p-5 font-medium text-neutral-50 shadow-lg shadow-neutral-500/20 transition active:scale-95">
                 <span class="material-symbols-outlined">
-                    add_2
+                    add
                 </span>
             </div>
             <div data-modal-target="pay_modal" data-modal-toggle="pay_modal"
@@ -16,14 +13,18 @@
                 </span>
             </div>
         </div>
+    <div class="">
+        <h1 class="text-2xl font-bold text-heading mb-4 capitalize">{{ $loanee->borrower_name }}</h1>
+
+        
 
         <div class="flex flex-col gap-4 mb-4">
-            <div class=" flex gap-2 items-start justify-between w-full">
-                <div class="">
+            <div class=" flex flex-col sm:flex-col gap-2 items-start justify-between w-full">
+                <div class="w-full">
                     <x-sale-table :loans=$loans :id="$loanee->id" />
 
                 </div>
-                <div class="">
+                <div class="w-full">
                     <x-paid-amount :paidAmounts="$paidAmounts" :id="$loanee->id" />
 
                 </div>
@@ -34,16 +35,28 @@
                 <table class="w-full text-sm text-left rtl:text-right text-body">
                     <thead class="text-sm text-body bg-neutral-secondary-medium border-b border-default-medium">
                         <tr class ="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
-                            <td class="px-6 py-4 font-semibold text-heading">Total Amount</td>
-                            <td class="px-6 py-4 font-semibold text-heading">Total Paid Amount</td>
-                            <td class="px-6 py-4 font-semibold text-heading"> Unpaid Amount</td>
-                        </tr>
+                            <tr>
+                <th scope="col" class="px-2 py-3 font-medium">
+                    {{ __('Total amount') }}
+                </th>
+                <th scope="col" class="px-2 py-3 font-medium">
+                    {{ __('Total paid amount') }}
+                </th>
+                <th scope="col" class="px-2 py-3 font-medium">
+                    {{ __('Unpaid amount') }}
+                </th>
+                </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>{{ $loans->sum('total_price') }}</td>
-                            <td>{{ $loanee->loanPaidAmounts->sum('amount_paid') }}</td>
-                            <td>{{ $loans->sum('total_price') - $loanee->loanPaidAmounts->sum('amount_paid') }}</td>
+                        <tr class="bg-neutral-primary-soft border-b border-default hover:bg-neutral-secondary-medium">
+                            <td class="p-2 font-semibold text-heading">
+               {{ number_format($loanee->loans->sum('total_price'))}}
+                 </td>
+                            <td class="p-2 font-semibold text-heading">{{ number_format($loanee->loanPaidAmounts->sum('amount_paid')) }}</td>
+                            <td class="p-2 font-semibold text-heading">
+                              {{ number_format($loanee->loans->sum('total_price') - $loanee->loanPaidAmounts->sum('amount_paid')) }}
+
+               </td>
                         </tr>
                     </tbody>
                 </table>

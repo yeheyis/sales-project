@@ -23,4 +23,10 @@ class Loanee extends Model
     {
         return $this->hasMany(LoanPaidAmount::class);
     }
+    
+    public function unpaidAmount()
+{
+    return $this->loans->sum('total_price') - $this->loanPaidAmounts->sum('amount_paid');
+}
+
 }
