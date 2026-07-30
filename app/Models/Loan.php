@@ -16,7 +16,6 @@ class Loan extends Model
         'loanee_id',
         'quantity',
         'price',
-        'paid_amount',
         'loan_date',
     ];
 
@@ -25,7 +24,7 @@ class Loan extends Model
         parent::boot();
 
         static::creating(function ($loan) {
-            $loan->total_price = $loan->quantity * $loan->price;
+
         });
     }
 

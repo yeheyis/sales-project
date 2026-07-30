@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Loan;
 use App\Models\Loanee;
-use App\Models\LoanPaidAmount;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
