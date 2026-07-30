@@ -34,36 +34,71 @@
   <div>
     <h5 class="mt-6 mb-2 text-2xl font-semibold tracking-tight text-heading">{{$product->quantity}}</h5>
   </div>
-  <div class="grid grid-cols-3 gap-2">
+  <div class="grid grid-cols-4 gap-2">
      
-    <a href="{{ route('sales.create', $product->id) }}" class="inline-flex items-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+    <a href="{{ route('sales.create', $product->id) }}" class="inline-flex col-span-2 items-center justify-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
         Record a sale
         
     </a>
     
     <a href="{{ route('products.edit', $product->id)}}" class="inline-flex items-center justify-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base focus:outline-none">
         <span class="material-symbols-outlined">
-edit
-</span>
+            edit
+        </span>
     </a>
     
-    <form action="{{ route('products.destroy', $product->id) }}" class="w-full border" method="POST"
+    <form action="{{ route('products.destroy', $product->id) }}" class="" method="POST"
             onsubmit="return confirm('Are you sure you want to delete this?')">
             @csrf
             @method('DELETE')
 
-            <button type="submit" class="btn btn-danger w-full inline-flex items-center justify-center">
+            <button type="submit" class="inline-flex items-center justify-center text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base focus:outline-none w-full h-full">
                 <span class="material-symbols-outlined">
 delete
 </span>
             </button>
         </form>
   </div>
-        
-  
-        
-    <p class="mb-6 text-body">In today’s fast-paced digital landscape, fostering seamless collaboration among Developers and IT Operations.</p>
-   
+
+  <div class="relative my-4 overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default">
+    <table class="w-full text-sm text-left rtl:text-right text-body">
+        <thead class="bg-neutral-secondary-soft border-b border-default">
+            <tr>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    Quantity
+                </th>
+                <th scope="col" class="px-6 py-3 font-medium">
+                    Price
+                </th>
+                <th scope='col' class ='px-6 py-3 font-medium' >
+                    Date
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        @forelse($sales as $sale)
+        <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+
+            <td scope="row" class="px-6 py-4 font-medium text-heading whitespace-nowrap">
+            {{ $sale->quantity}}
+                </td>
+                <td class="px-6 py-4">
+                {{$sale->price}}
+                </td>
+                <td class='px-6 py-4'>
+                {{$sale->created_at->format('M d, Y')}}
+                </td>
+                </tr>
+            @empty
+            @endforelse
+                
+                
+                
+        </tbody>
+    </table>
 </div>
 
+   
+</div>
 </x-meta>

@@ -5,21 +5,21 @@
             <input type="text" hidden class="text" value="{{ $product->id }}" name="product_id" />
             <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">{{ __('Code name') }}</label>
 
-            <input type="text" id="visitors"
+            <input type="text" id="code"
                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body"
                 placeholder="" name="product_code" value="{{ $product->code }}" disabled />
         </div>
 
         <div>
-            <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">{{ __('Quantity') }}</label>
-            <input type="text" id="visitors"
+            <label for="quantity" class="block mb-2.5 text-sm font-medium text-heading">{{ __('Quantity') }}</label>
+            <input type="text" id="quantity"
                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body"
                 placeholder="" name="quantity" required />
         </div>
 
         <div>
-            <label for="visitors" class="block mb-2.5 text-sm font-medium text-heading">{{ __('price') }}</label>
-            <input type="text" id="visitors"
+            <label for="price" class="block mb-2.5 text-sm font-medium text-heading">{{ __('price') }}</label>
+            <input type="number" id="price"
                 class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body"
                 placeholder="" name="price" required />
         </div>
@@ -44,8 +44,8 @@
 
         </ul>
 
-        <button type="submit"
-            class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong my-2 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Add</button>
+        <x-primary-button type="submit"
+            class="w-full">Add</x-primary-button>
         @if (session('error'))
             <p class="text-red-500 text-sm mt-2">{{ session('error') }}</p>
         @endif

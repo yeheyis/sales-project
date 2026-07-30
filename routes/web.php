@@ -4,12 +4,13 @@ use App\Http\Controllers\LoanController;
 use App\Http\Controllers\LoaneeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoanPaidAmountController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('dashboard');
+Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+
+Route::get('/api/revenue-data', [HomeController::class, 'getRevenueData'])->name('api.revenue-data');
 
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 

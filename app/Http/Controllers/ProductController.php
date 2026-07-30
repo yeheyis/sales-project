@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -71,8 +72,10 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        $sales = Sale::where('product_id',$product->id)->get();
         return view('product.show', [
-          'product' => $product
+          'product' => $product,
+          'sales' => $sales
           ]);
     }
 
